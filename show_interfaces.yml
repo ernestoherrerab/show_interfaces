@@ -1,0 +1,29 @@
+---
+
+- name: Set up Folders and files
+  hosts: localhost
+
+  tasks:
+     - name: Create directory for data capture
+       file: path=if_unused/ state=directory
+
+     - name: Create file for captured data
+       copy:
+         content: ""
+         dest: ./if_unused/if_unused_summary.txt
+         force: no
+
+- name: Start Show Interfaces Playbook
+  hosts: test-host
+  gather_facts: no
+  vars_prompt:
+    - name: "username"
+      prompt: "Username"
+      private: no
+
+    - name: "password"
+      prompt: "Password"
+      private: yes
+
+  roles:
+    - ifaces_counters

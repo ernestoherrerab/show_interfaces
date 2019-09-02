@@ -1,0 +1,14 @@
+---
+
+- name: parser meta data
+  parser_metadata:
+    version: 1.0
+    command: show version
+    network_os: ios
+
+- name: match sections
+  pattern_match:
+    regex: "^(\\S+ uptime is .+)"
+    match_all: yes
+  register: uptime
+  export: yes

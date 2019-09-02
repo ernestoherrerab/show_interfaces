@@ -1,0 +1,114 @@
+---
+
+- name: parser meta data
+  parser_metadata:
+    version: 1.0
+    command: show interfaces
+    network_os: ios
+
+- name: match sections
+  pattern_match:
+    regex: "^\\S+\\s+is\\s+(?:up|down|administratively down),"
+    match_all: yes
+    match_greedy: yes
+  register: section
+  export: yes
+
+# Used to test
+#- name: match sections
+#  pattern_match:
+#    regex: "(^\\S+)"
+#    match_all: yes
+#  register: sec_if_name
+#  export: yes
+
+
+- name: Match interface data
+  pattern_group:
+    - name: Match Name
+      pattern_match:
+        regex: "(^\\S+)"
+        content: "{{ item }}"
+      register: if_name
+
+    - name: Match Line Protocol Status
+      pattern_match:
+        regex: "^\\S+\\s+is\\s+(?:up|down|administratively down),\\s+line protocol is\\s+(\\S+)\\s+\\S+"
+        content: "{{ item }}"
+      register: if_status
+
+    - name: Match interface MAC address
+      pattern_match:
+        regex: "address is\\s+(\\S+)"
+        content: "{{ item }}"
+      register: if_mac
+
+    - name: Match interface Last Input
+      pattern_match:
+        regex: "Last input\\s+(\\S+),"
+        content: "{{ item }}"
+      register: if_input
+
+    - name: Match 5 minute Input rate
+      pattern_match:
+        regex: "5 minute input rate\\s+(\\d+\\s+bits\\/sec),"
+        content: "{{ item }}"
+      register: if_input_rate
+
+    - name: Match Packets Input
+      pattern_match:
+        regex: "(\\d+) packets input,"
+        content: "{{ item }}"
+      register: if_packets_input
+
+    - name: Match Input Errors
+      pattern_match:
+        regex: "(\\d+) input errors,"
+        content: "{{ item }}"
+      register: if_input_errors
+
+    - name: Match CRC Errors
+      pattern_match:
+        regex: "\\d+ input errors,\\s+(\\d+)\\s+CRC"
+        content: "{{ item }}"
+      register: if_crc_errors
+
+    - name: Match Output Errors
+      pattern_match:
+        regex: "(\\d+) output errors,"
+        content: "{{ item }}"
+      register: if_output_errors
+
+
+  loop: "{{ section }}"
+  export: yes
+  register: if_counters
+
+- name: generate json data structure
+  json_template:
+    template:
+      - key: "{{ item.if_name.matches.0 }}"
+        object:
+          - key: data
+            object:
+              - key: name
+                value: "{{ item.if_name.matches.0 }}"
+              - key: status
+                value: "{{ item.if_status.matches.0 }}"
+              - key: MAC
+                value: "{{ item.if_mac.matches.0 }}"
+              - key: last_input
+                value: "{{ item.if_input.matches.0 }}"
+              - key: input_rate
+                value: "{{ item.if_input_rate.matches.0 }}"
+              - key: packets_input
+                value: "{{ item.if_packets_input.matches.0}}"
+              - key: input_errors
+                value: "{{ item.if_input_errors.matches.0 }}"
+              - key: crc_errors
+                value: "{{ item.if_crc_errors.matches.0 }}"
+              - key: output_errors
+                value: "{{ item.if_output_errors.matches.0 }}"
+  loop: "{{ if_counters }}"
+  export: yes
+  register: if_counters_facts
