@@ -6,12 +6,12 @@
   - name: Parse the CLI Commands show interfaces
     cli:
       command: show interfaces
-      parser: "/etc/ansible/show_interfaces/parsers/show_interfaces.yml"
+      parser: "./show_interfaces/parsers/show_interfaces.yml"
 
   - name: Parse the CLI Commands show version
     cli:
       command: show version
-      parser: "/etc/ansible/show_interfaces/parsers/show_version.yml"
+      parser: "./show_interfaces/parsers/show_version.yml"
 #*
 # Test
 #  - debug:
