@@ -1,0 +1,11 @@
+Device ID,Mgmt_Lo,Platform,Name,DNS Name
+SWEx-CC7-acc1,10.59.255.100,ios,swex-cc7-acc1,swex-cc7-acc1.ikea.com
+SWEx-CC7-acc2,10.59.255.101,ios,swex-cc7-acc2,swex-cc7-acc2.ikea.com
+SWEx-CC7-acc7,10.59.251.106,ios,swex-cc7-acc7,swex-cc7-acc7.ikea.com
+SWEx-CC8-acc1,10.59.255.102,ios,swex-cc8-acc1,swex-cc8-acc1.ikea.com
+SWEx-CC8-acc2,10.59.255.103,ios,swex-cc8-acc2,swex-cc8-acc2.ikea.com
+SWEx-CC8-acc7,10.59.251.107,ios,swex-cc8-acc7,swex-cc8-acc7.ikea.com
+SWEr-CC7-acc1,10.59.255.246,ios,swer-cc7-acc1,swer-cc7-acc1.ikea.com
+SWEr-CC7-acc2,10.59.255.245,ios,swer-cc7-acc2,swer-cc7-acc2.ikea.com
+SWEr-CC8-acc1,10.59.255.244,ios,swer-cc8-acc1,swer-cc8-acc1.ikea.com
+SWEr-CC8-acc2,10.59.255.243,ios,swer-cc8-acc2,swer-cc8-acc2.ikea.com
