@@ -2,6 +2,7 @@
 
 - name: Set up Folders and files
   hosts: localhost
+  connection: local
 
   tasks:
      - name: Create directory for data capture
