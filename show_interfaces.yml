@@ -14,7 +14,7 @@
          force: no
 
 - name: Start Show Interfaces Playbook
-  hosts: test-host
+  hosts: ios
   gather_facts: no
   vars_prompt:
     - name: "username"
