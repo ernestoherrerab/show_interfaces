@@ -3,14 +3,7 @@
 - name: Set up Folders and files
   hosts: localhost
   connection: local
-  vars_prompt:
-    - name: "username"
-      prompt: "Username"
-      private: no
 
-    - name: "password"
-      prompt: "Password"
-      private: yes
   tasks:
      - name: Create directory for data capture
        file: path=if_unused/ state=directory
@@ -24,6 +17,14 @@
 - name: Start Show Interfaces Playbook
   hosts: ios
   gather_facts: false
+  vars_prompt:
+    - name: "username"
+      prompt: "Username"
+      private: no
+
+    - name: "password"
+      prompt: "Password"
+      private: yes
 
   roles:
     - ifaces_counters
