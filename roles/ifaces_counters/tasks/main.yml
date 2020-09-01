@@ -3,10 +3,10 @@
   - import_role:
       name: ansible-network.network-engine
 
-#  - name: Parse the CLI Commands show interfaces
-#    cli:
-#      command: show interfaces
-#      parser: "./show_interfaces/parsers/show_interfaces.yml"
+  - name: Parse the CLI Commands show interfaces
+    cli:
+      command: show interfaces
+      parser: "./show_interfaces/parsers/show_interfaces.yml"
 #
 #  - name: Parse the CLI Commands show version
 #    cli:
