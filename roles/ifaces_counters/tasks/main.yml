@@ -1,10 +1,8 @@
 ---
-  - debug:
-      msg: Hello World
 
-#  - import_role:
-#      name: ansible-network.network-engine
-#
+  - import_role:
+      name: ansible-network.network-engine
+
 #  - name: Parse the CLI Commands show interfaces
 #    cli:
 #      command: show interfaces
