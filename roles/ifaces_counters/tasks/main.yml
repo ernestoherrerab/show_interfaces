@@ -18,18 +18,6 @@
       content: "{{ if_counters_facts|to_nice_json }}"
       dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
 
-#  - name: Set Variable for Unused Interfaces - Version 1
-#    set_fact:
-#       if_unused: "{{ if_unused }} + ['{{ item.0[item.1.if_name.matches[0]].data.name }}']"
-#    when:  item.0[item.1.if_name.matches[0]].data.last_input  == "never"
-#    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
-    
-#  - name: Set Variable for Unused Interfaces - Version 2
-#    set_fact:
-#       if_unused: "{{ if_unused }} + ['{{ item.0 }}']"
-#    when:  item.0[item.1.if_name.matches[0]].data.last_input  == "never"
-#    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
-
   - name: Set Variable for Unused Interfaces JSON Structure
     set_fact:
        if_unused_json: "{{if_unused_json + [item.0] }}"
