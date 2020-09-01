@@ -45,11 +45,11 @@
   - name: Count Unused interfaces
     set_fact:
       if_unused_no: "{{ if_unused|length }}"
-#
-#  - name: Copy JSON format to file of Unused Interfaces
-#    copy:
-#      content: "{{ if_unused_json|to_nice_json }}"
-#      dest: ./if_unused/{{ inventory_hostname }}_ifunused.json
+
+  - name: Copy JSON format to file of Unused Interfaces
+    copy:
+      content: "{{ if_unused_json|to_nice_json }}"
+      dest: ./if_unused/{{ inventory_hostname }}_ifunused.json
 #
 #  - name: Set Variable for Used Interfaces JSON Structure
 #    set_fact:
