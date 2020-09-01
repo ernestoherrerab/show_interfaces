@@ -33,7 +33,7 @@ def clean_yaml_file(input_file, output_file):
         for data_elements in to_clean:
             data = data.replace(data_elements, "")
         outfile.write(data)
-    #Path.unlink(input_file)
+    Path.unlink(input_file)
 
 
 def main():
@@ -63,7 +63,8 @@ def main():
                 empty_host['all']['children']['ios']['vars']['ansible_ssh_pass'] = "{{password}}"    
     hosts_yaml = yaml.dump(empty_host, default_flow_style=False)
     create_inventory(str(hosts_yaml))
-    clean_yaml_file('hosts_stage.yml', 'hosts.yml')
+    stage_yaml = Path('hosts_stage.yml')
+    clean_yaml_file(stage_yaml, 'hosts.yml')
     
 
 if __name__ == "__main__":
