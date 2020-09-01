@@ -11,7 +11,7 @@
   - name: Parse the CLI Commands show version
     cli:
       command: show version
-      parser: "./show_interfaces/parsers/show_version.yml"
+      parser: "../../../parsers/show_version.yml"
 
   - debug:
       var: section
