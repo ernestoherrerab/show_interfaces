@@ -13,9 +13,6 @@
       command: show version
       parser: "../../../parsers/show_version.yml"
 
-  - name: Create a directory for captured data
-    file: path=ifaces_data/ state=directory
-#
 #  - name: Copy JSON format to file of Parsed Data
 #    copy:
 #      content: "{{ if_counters_facts|to_nice_json }}"

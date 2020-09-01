@@ -7,6 +7,9 @@
   tasks:
      - name: Create directory for data capture
        file: path=if_unused/ state=directory
+      
+     - name: Create a directory for captured data
+       file: path=ifaces_data/ state=directory
 
      - name: Create file for captured data
        copy:
