@@ -13,10 +13,10 @@
       command: show version
       parser: "../../../parsers/show_version.yml"
 
-#  - name: Copy JSON format to file of Parsed Data
-#    copy:
-#      content: "{{ if_counters_facts|to_nice_json }}"
-#      dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
+  - name: Copy JSON format to file of Parsed Data
+    copy:
+      content: "{{ if_counters_facts|to_nice_json }}"
+      dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
 #
 #
 #  - debug:
