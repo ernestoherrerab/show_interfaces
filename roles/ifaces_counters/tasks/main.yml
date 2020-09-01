@@ -36,16 +36,16 @@
     when:  item.0[item.1.if_name.matches[0]].data.last_input  == "never"
     loop: "{{ if_counters_facts|zip(if_counters)|list }}"
 
-#  - name: Set Variable for Unused Interfaces Summary
-#    set_fact:
-#       if_unused: "{{if_unused + [item.0[item.1.if_name.matches[0]].data.name] }}"
-#    when:  item.0[item.1.if_name.matches[0]].data.last_input  == "never"
-#    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
-#
-#  - name: Count Unused interfaces
-#    set_fact:
-#      if_unused_no: "{{ if_unused|length }}"
-#
+  - name: Set Variable for Unused Interfaces Summary
+    set_fact:
+       if_unused: "{{if_unused + [item.0[item.1.if_name.matches[0]].data.name] }}"
+    when:  item.0[item.1.if_name.matches[0]].data.last_input  == "never"
+    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
+
+  - name: Count Unused interfaces
+    set_fact:
+      if_unused_no: "{{ if_unused|length }}"
+
 #  - name: Copy JSON format to file of Unused Interfaces
 #    copy:
 #      content: "{{ if_unused_json|to_nice_json }}"
