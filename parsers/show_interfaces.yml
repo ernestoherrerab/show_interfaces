@@ -14,15 +14,6 @@
   register: section
   export: yes
 
-# Used to test
-#- name: match sections
-#  pattern_match:
-#    regex: "(^\\S+)"
-#    match_all: yes
-#  register: sec_if_name
-#  export: yes
-
-
 - name: Match interface data
   pattern_group:
     - name: Match Name

@@ -7,14 +7,14 @@
     cli:
       command: show interfaces
       parser: "../../../parsers/show_interfaces.yml"
-#
-#  - name: Parse the CLI Commands show version
-#    cli:
-#      command: show version
-#      parser: "./show_interfaces/parsers/show_version.yml"
-#
-#  - debug:
-#      var: section
+
+  - name: Parse the CLI Commands show version
+    cli:
+      command: show version
+      parser: "./show_interfaces/parsers/show_version.yml"
+
+  - debug:
+      var: section
 #
 #  - debug:
 #      var: if_counters_facts
