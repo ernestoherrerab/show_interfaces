@@ -56,12 +56,12 @@
        if_used_json: "{{if_used_json + [item.0[item.1.if_name.matches[0]].data.name] }}"
     when:  item.0[item.1.if_name.matches[0]].data.last_input  != "never"
     loop: "{{ if_counters_facts|zip(if_counters)|list }}"
-#
-#  - name: Set Variable for Used Interfaces Summary
-#    set_fact:
-#       if_used: "{{if_used + [item.0[item.1.if_name.matches[0]].data.name] }}"
-#    when:  item.0[item.1.if_name.matches[0]].data.last_input  != "never"
-#    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
+
+  - name: Set Variable for Used Interfaces Summary
+    set_fact:
+       if_used: "{{if_used + [item.0[item.1.if_name.matches[0]].data.name] }}"
+    when:  item.0[item.1.if_name.matches[0]].data.last_input  != "never"
+    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
 #  
 #  - name: Count Used interfaces
 #    set_fact:
