@@ -14,11 +14,8 @@
       parser: "../../../parsers/show_version.yml"
 
   - debug:
-      var: if_counters_facts
-
-#  - debug:
-#      msg: "{{ item.if_name.matches[0] }}"
-#    loop: "{{ if_counters }}"
+      msg: "{{ item.if_name.matches[0] }}"
+    loop: "{{ if_counters }}"
 #
 #  - debug:
 #      msg: "{{ if_counters_facts[0].FastEthernet1.data.name}}"
