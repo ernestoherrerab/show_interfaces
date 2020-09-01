@@ -19,13 +19,9 @@
       dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
 
   - debug:
-      msg: "{{ item.if_name.matches }}"
-    loop: "{{ if_counters }}"
+      msg: "{{ item.0[item.1.if_name.matches[0]].data.name }}"
+    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
 
-#  - debug:
-#      msg: "{{ item.0[item.1.if_name.matches[0]].data.name }}"
-#    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
-#
 #  - debug:
 #      msg: "{{ item.0[item.1.if_name.matches[0]].data.name }}"
 #    when:  item.0[item.1.if_name.matches[0]].data.last_input  == "never"
