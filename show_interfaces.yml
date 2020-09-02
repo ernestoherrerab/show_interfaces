@@ -7,6 +7,9 @@
   tasks:
      - name: Create directory for data capture
        file: path=if_unused/ state=directory
+      
+     - name: Create a directory for captured data
+       file: path=ifaces_data/ state=directory
 
      - name: Create file for captured data
        copy:
@@ -14,12 +17,6 @@
          dest: ./if_unused/if_unused_summary.txt
          force: no
 
-     - name: Create file for captured data
-       copy:
-         content: ""
-         dest: ./if_unused/if_unused_summary.txt
-         force: no
-         
 - name: Start Show Interfaces Playbook
   hosts: ios
   gather_facts: false
