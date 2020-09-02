@@ -14,7 +14,7 @@
 
   - name: Export interface counters variable
     set fact:
-      if_count_data: "{{ if_counters_facts|to_nice_json }}"
+      if_count_data: "{{if_counters_facts}}"
 
 #  - name: Copy JSON format to file of Parsed Data
 #    copy:
