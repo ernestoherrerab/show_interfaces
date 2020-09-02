@@ -13,10 +13,10 @@
       command: show version
       parser: "../../../parsers/show_version.yml"
 
-  - name: Copy JSON format to file of Parsed Data
-    copy:
-      content: "{{ if_counters_facts|to_nice_json }}"
-      dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
+#  - name: Copy JSON format to file of Parsed Data
+#    copy:
+#      content: "{{ if_counters_facts|to_nice_json }}"
+#      dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
 
   - name: Set Variable for Unused Interfaces JSON Structure
     set_fact:
@@ -30,32 +30,33 @@
     when:  item.0[item.1.if_name.matches[0]].data.last_input  == "never"
     loop: "{{ if_counters_facts|zip(if_counters)|list }}"
 
-  - name: Count Unused interfaces
-    set_fact:
-      if_unused_no: "{{ if_unused|length }}"
-
-  - name: Copy JSON format to file of Unused Interfaces
-    copy:
-      content: "{{ if_unused_json|to_nice_json }}"
-      dest: ./if_unused/{{ inventory_hostname }}_ifunused.json
-
-  - name: Set Variable for Used Interfaces JSON Structure
-    set_fact:
-       if_used_json: "{{if_used_json + [item.0[item.1.if_name.matches[0]].data.name] }}"
-    when:  item.0[item.1.if_name.matches[0]].data.last_input  != "never"
-    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
-
-  - name: Set Variable for Used Interfaces Summary
-    set_fact:
-       if_used: "{{if_used + [item.0[item.1.if_name.matches[0]].data.name] }}"
-    when:  item.0[item.1.if_name.matches[0]].data.last_input  != "never"
-    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
-  
-  - name: Count Used interfaces
-    set_fact:
-      if_used_no: "{{ if_used|length }}"
-
-  - name: Append Summary Data to File
-    lineinfile:
-      path: ./if_unused/if_unused_summary.txt
-      line: "{{ uptime[0].matches }} and has {{ if_unused_no }} unused interfaces and {{ if_used_no }} in use"    
+#  - name: Count Unused interfaces
+#    set_fact:
+#      if_unused_no: "{{ if_unused|length }}"
+#
+#  - name: Copy JSON format to file of Unused Interfaces
+#    copy:
+#      content: "{{ if_unused_json|to_nice_json }}"
+#      dest: ./if_unused/{{ inventory_hostname }}_ifunused.json
+#
+#  - name: Set Variable for Used Interfaces JSON Structure
+#    set_fact:
+#       if_used_json: "{{if_used_json + [item.0[item.1.if_name.matches[0]].data.name] }}"
+#    when:  item.0[item.1.if_name.matches[0]].data.last_input  != "never"
+#    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
+#
+#  - name: Set Variable for Used Interfaces Summary
+#    set_fact:
+#       if_used: "{{if_used + [item.0[item.1.if_name.matches[0]].data.name] }}"
+#    when:  item.0[item.1.if_name.matches[0]].data.last_input  != "never"
+#    loop: "{{ if_counters_facts|zip(if_counters)|list }}"
+#  
+#  - name: Count Used interfaces
+#    set_fact:
+#      if_used_no: "{{ if_used|length }}"
+#
+#  - name: Append Summary Data to File
+#    lineinfile:
+#      path: ./if_unused/if_unused_summary.txt
+#      line: "{{ uptime[0].matches }} and has {{ if_unused_no }} unused interfaces and {{ if_used_no }} in use"    
+#
