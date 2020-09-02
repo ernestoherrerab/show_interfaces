@@ -16,6 +16,8 @@
     copy:
       content: "{{ if_counters_facts|to_nice_json }}"
       dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
+    delegate_to: localhost
+
   - name: Set Variable for Unused Interfaces JSON Structure
     set_fact:
        if_unused_json: "{{if_unused_json + [item.0] }}"
@@ -35,6 +37,7 @@
     copy:
       content: "{{ if_unused_json|to_nice_json }}"
       dest: ./if_unused/{{ inventory_hostname }}_ifunused.json
+    delegate_to: localhost
 
   - name: Set Variable for Used Interfaces JSON Structure
     set_fact:
@@ -56,3 +59,4 @@
     lineinfile:
       path: ./if_unused/if_unused_summary.txt
       line: "{{ uptime[0].matches }} and has {{ if_unused_no }} unused interfaces and {{ if_used_no }} in use"    
+    delegate_to: localhost
