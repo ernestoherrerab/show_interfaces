@@ -12,12 +12,6 @@
       command: show version
       parser: "../../../parsers/show_version.yml"
 
-  - name: Export interface counters variable
-    set_fact:
-       if_count_data: "{{if_counters_facts}}"
-    register: if_count_data
-
-
 #  - name: Copy JSON format to file of Parsed Data
 #    copy:
 #      content: "{{ if_counters_facts|to_nice_json }}"

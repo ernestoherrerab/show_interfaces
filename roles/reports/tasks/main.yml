@@ -1,16 +1,16 @@
 ---
 
-  - name: Create directory for data capture
-    file: path=if_unused/ state=directory
-   
-  - name: Create a directory for captured data
-    file: path=ifaces_data/ state=directory
-
-  - name: Create file for captured data
-    copy:
-      content: ""
-      dest: ./if_unused/if_unused_summary.txt
-      force: no
+#  - name: Create directory for data capture
+#    file: path=if_unused/ state=directory
+#   
+#  - name: Create a directory for captured data
+#    file: path=ifaces_data/ state=directory
+#
+#  - name: Create file for captured data
+#    copy:
+#      content: ""
+#      dest: ./if_unused/if_unused_summary.txt
+#      force: no
 
 #  - name: Copy JSON format to file of Parsed Data
 #    copy:
@@ -18,4 +18,4 @@
 #      dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
  
   - debug:
-      var: if_count_data|to_nice_json
+      var: if_counters_facts
