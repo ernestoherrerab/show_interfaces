@@ -1,20 +1,19 @@
 ---
 
+- name: Start Show Interfaces Playbook
+  hosts: ios
+  gather_facts: false
+  vars_prompt:
+    - name: "username"
+      prompt: "Username"
+      private: no
 
-#- name: Start Show Interfaces Playbook
-#  hosts: ios
-#  gather_facts: false
-#  vars_prompt:
-#    - name: "username"
-#      prompt: "Username"
-#      private: no
-#
-#    - name: "password"
-#      prompt: "Password"
-#      private: yes
-#
-#  roles:
-#    - ifaces_counters
+    - name: "password"
+      prompt: "Password"
+      private: yes
+
+  roles:
+    - ifaces_counters
 
 - name: Set up Folders and files
   hosts: localhost
