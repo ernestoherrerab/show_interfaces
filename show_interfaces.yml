@@ -25,11 +25,10 @@
     - name: "password"
       prompt: "Password"
       private: yes
-  
-  tasks:
-    - import_role:
-        name: ansible-network.network-engine
+  roles:
+    - ansible-network.network-engine
 
+  tasks:
     - name: Parse the CLI Commands show interfaces
       cli:
         command: show interfaces
