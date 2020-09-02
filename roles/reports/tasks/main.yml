@@ -1,7 +1,5 @@
 ---
-  - import_role:
-      name: ansible-network.network-engine
-      
+
   - name: Create directory for data capture
     file: path=if_unused/ state=directory
    
