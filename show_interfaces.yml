@@ -14,6 +14,12 @@
          dest: ./if_unused/if_unused_summary.txt
          force: no
 
+     - name: Create file for captured data
+       copy:
+         content: ""
+         dest: ./if_unused/if_unused_summary.txt
+         force: no
+         
 - name: Start Show Interfaces Playbook
   hosts: ios
   gather_facts: false
@@ -43,6 +49,7 @@
       copy:
         content: "{{ if_counters_facts|to_nice_json }}"
         dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
+
     - name: Set Variable for Unused Interfaces JSON Structure
       set_fact:
          if_unused_json: "{{if_unused_json + [item.0] }}"
