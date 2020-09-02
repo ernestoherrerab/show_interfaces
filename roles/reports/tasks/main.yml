@@ -18,4 +18,4 @@
 #      dest: ./ifaces_data/{{ inventory_hostname }}_ifcounters.json
  
   - debug:
-      var: if_counters_facts|to_nice_json
+      var: if_count_data|to_nice_json

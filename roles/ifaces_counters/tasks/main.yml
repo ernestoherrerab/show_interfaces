@@ -1,7 +1,7 @@
 ---
   - import_role:
       name: ansible-network.network-engine
-      
+
   - name: Parse the CLI Commands show interfaces
     cli:
       command: show interfaces
@@ -11,6 +11,10 @@
     cli:
       command: show version
       parser: "../../../parsers/show_version.yml"
+
+  - name: Export interface counters variable
+    set fact:
+      if_count_data: "{{ if_counters_facts|to_nice_json }}"
 
 #  - name: Copy JSON format to file of Parsed Data
 #    copy:
