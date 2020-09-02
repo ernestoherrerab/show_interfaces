@@ -1,17 +1,17 @@
 ---
 
-#  - import_role:
-#      name: ansible-network.network-engine
-#
-#  - name: Parse the CLI Commands show interfaces
-#    cli:
-#      command: show interfaces
-#      parser: "../../../parsers/show_interfaces.yml"
-#
-#  - name: Parse the CLI Commands show version
-#    cli:
-#      command: show version
-#      parser: "../../../parsers/show_version.yml"
+  - import_role:
+      name: ansible-network.network-engine
+
+  - name: Parse the CLI Commands show interfaces
+    cli:
+      command: show interfaces
+      parser: "../../../parsers/show_interfaces.yml"
+
+  - name: Parse the CLI Commands show version
+    cli:
+      command: show version
+      parser: "../../../parsers/show_version.yml"
 
 #  - name: Copy JSON format to file of Parsed Data
 #    copy:
